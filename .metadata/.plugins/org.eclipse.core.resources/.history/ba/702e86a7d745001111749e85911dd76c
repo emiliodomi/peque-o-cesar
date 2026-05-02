@@ -1,0 +1,18 @@
+package pequeño_cesar;
+
+import java.util.List;
+import java.util.ArrayList;
+
+public class Refrigerador {
+	private List<Bebidas> listaBebidas;
+
+	public Refrigerador() {
+		listaBebidas.add(new Bebidas ("sprite", "refresco", 40, 18.5));
+		listaBebidas.add(new Bebidas("fanta", "refresco", 50, 17.0));
+	}
+	
+	public List<Bebidas> getListaBebidas(){
+		return listaBebidas;
+	}
+	
+}

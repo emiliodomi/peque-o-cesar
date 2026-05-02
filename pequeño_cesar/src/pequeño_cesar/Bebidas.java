@@ -7,7 +7,7 @@ public class Bebidas {
 	protected int vendidas;
 	protected double precio;
 	
-	public Bebidas(String nombre, String tipo, int cantidad_almacen, int vendidas, double precio) {
+	public Bebidas(String nombre, String tipo, int cantidad_almacen, double precio) {
 		super();
 		this.nombre = nombre;
 		this.tipo = tipo;
@@ -16,12 +16,15 @@ public class Bebidas {
 		this.precio = precio;
 	}
 	
-	private void vender() {
+	protected void vender() {
 		vendidas += 1;
 	}
 	
-	private void reabastecer(int sumar_cantidad) {
+	protected void reabastecer(int sumar_cantidad) {
 		cantidad_almacen += sumar_cantidad;
 	}
 	
 }
+
+
+
