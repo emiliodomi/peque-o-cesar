@@ -1,0 +1,13 @@
+package pequeño_cesar;
+
+import javax.swing.JFrame;
+
+@SuppressWarnings("serial")
+public class Bebidas_interfaz extends JFrame {
+    
+	public Bebidas_interfaz(Refrigerador refrigerador) {
+        this.setTitle("Venta de Bebidas");
+        this.setSize(400, 300);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+}

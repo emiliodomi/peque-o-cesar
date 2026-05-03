@@ -1,0 +1,10 @@
+package pequeño_cesar.EmilioBebidas;
+import javax.swing.*;
+
+import pequeño_cesar.Bebidas;
+
+public class InterfazElegirVino extends JFrame{
+	public InterfazElegirVino(Bebidas bebida) {
+		
+	}
+}

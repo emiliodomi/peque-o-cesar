@@ -1,0 +1,48 @@
+package pequeño_cesar;
+
+import javax.swing.*;
+
+import java.awt.*;
+import java.util.List;;
+
+public class Bebidas_interfaz extends JFrame {
+    
+	JPanel panelB = new JPanel();
+	
+	Refrigerador miRefrigerador = new Refrigerador();
+	
+	public Bebidas_interfaz(){
+		setTitle("Menu de Bebidas");
+		setSize(500, 400);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		panelB.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
+		
+		List<Bebidas> lista = miRefrigerador.getListaBebidas();
+		
+		for (Bebidas bebida : lista) {
+		    JButton boton = new JButton(bebida.getNombre());
+		    
+		    boton.addActionListener(e -> {
+		        String tipo = bebida.getTipo(); 
+
+		        switch (tipo) {
+		            case "Refresco":
+		                new InterfazElegirRefresco(bebida).setVisible(true);
+		                break;
+		            case "Agua":
+		                new InterfazElegirAgua(bebida).setVisible(true);
+		                break;
+		            case "Vino":
+		                new InterfazElegirVino(bebida).setVisible(true);
+		                break;
+		        }
+		        this.dispose();
+		    });
+		    panelB.add(boton);
+		}
+		
+		this.add(panelB);
+		this.setVisible(true);
+	}
+}
