@@ -21,7 +21,7 @@ public class Bebidas_interfaz extends JFrame {
 		List<Bebidas> lista = miRefrigerador.getListaBebidas();
 		
 		for (Bebidas bebida : lista) {
-		    JButton boton = new JButton(bebida.getNombre());
+		    JButton boton = new JButton(bebida.getTipo());
 		    
 		    boton.addActionListener(e -> {
 		        String tipo = bebida.getTipo(); 
