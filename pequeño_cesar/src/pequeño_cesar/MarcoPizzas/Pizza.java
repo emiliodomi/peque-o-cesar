@@ -39,4 +39,5 @@ public class Pizza {
     public int getCantidadEnAlmacen() {
         return cantidadEnAlmacen;
     }
+    
 }

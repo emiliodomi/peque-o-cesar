@@ -3,6 +3,7 @@ package pequeño_cesar;
 import javax.swing.*;
 
 import pequeño_cesar.EmilioBebidas.Bebidas_interfaz;
+import pequeño_cesar.MarcoPizzas.PizzasInterfaz;
 
 import java.awt.*;
 
@@ -11,7 +12,7 @@ public class MainMenu extends JFrame {
     JPanel Mpanel = new JPanel();
     
     public MainMenu() {
-        setTitle("Menú Principal - Little Caesars");
+        setTitle("Menú Principal - pequeño cesar");
         setSize(600, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -29,6 +30,12 @@ public class MainMenu extends JFrame {
             new Bebidas_interfaz(); 
             this.dispose();
         });
+        
+        btnPizzas.addActionListener(e -> {
+            new PizzasInterfaz(); 
+            this.dispose();
+        });
+
 
         Mpanel.add(btnPizzas);
         Mpanel.add(btnBebidas);
