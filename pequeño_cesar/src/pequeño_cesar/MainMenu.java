@@ -4,6 +4,7 @@ import javax.swing.*;
 
 import pequeño_cesar.EmilioBebidas.Bebidas_interfaz;
 import pequeño_cesar.MarcoPizzas.PizzasInterfaz;
+import pequeño_cesar.TadeoPostres.Postres_interfaz;
 
 import java.awt.*;
 
@@ -33,6 +34,11 @@ public class MainMenu extends JFrame {
         
         btnPizzas.addActionListener(e -> {
             new PizzasInterfaz(); 
+            this.dispose();
+        });
+        
+        btnPostres.addActionListener(e -> {
+            new Postres_interfaz(); 
             this.dispose();
         });
 
