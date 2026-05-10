@@ -1,6 +1,9 @@
 package pequeño_cesar.TadeoPostres;
 
 import javax.swing.*;
+
+import HistorialVentas.GestorHistorial;
+
 import java.awt.event.*;
 
 public class InterfazElegirPastel extends JFrame {
@@ -35,6 +38,12 @@ public class InterfazElegirPastel extends JFrame {
                     p.setCantidad_almacen(p.getCantidad_almacen() - 1);
                     p.vender();
                     textoStock.setText("Stock de pastel: " + p.getCantidad_almacen());
+                    
+                    GestorHistorial gestor = new GestorHistorial();
+                    gestor.agregarVenta("Se vendió 1 " + p.getNombre() + " po $" + p.getPrecio());
+                    
+                    
+                    
                     JOptionPane.showMessageDialog(null, "vendiste un pastel!");
                 } else {
                     JOptionPane.showMessageDialog(null, "ya no hay pastel");

@@ -1,6 +1,9 @@
 package pequeño_cesar.TadeoPostres;
 
 import javax.swing.*;
+
+import HistorialVentas.GestorHistorial;
+
 import java.awt.event.*;
 
 public class InterfazElegirGelatina extends JFrame {
@@ -35,6 +38,12 @@ public class InterfazElegirGelatina extends JFrame {
                     p.setCantidad_almacen(p.getCantidad_almacen() - 1);
                     p.vender();
                     textoStock.setText("Stock de gelatina: " + p.getCantidad_almacen());
+                    
+               //aqui esta el gestor de historia para mi 
+                    GestorHistorial gestor = new GestorHistorial();
+                    gestor.agregarVenta("Se vendió 1x " + p.getNombre() + " por $" + p.getPrecio());
+                    
+                    
                     JOptionPane.showMessageDialog(null, "vendiste una gelatina!");
                 } else {
                     JOptionPane.showMessageDialog(null, "ya no hay gelatina");
