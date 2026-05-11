@@ -1,4 +1,4 @@
-package HistorialVentas; // <--- Importante: que sea este paquete
+package pequeno_cesar; // <--- Importante: que sea este paquete
 
 import java.io.*;
 import java.util.ArrayList;

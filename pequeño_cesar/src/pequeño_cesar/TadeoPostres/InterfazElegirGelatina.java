@@ -2,7 +2,7 @@ package pequeño_cesar.TadeoPostres;
 
 import javax.swing.*;
 
-import HistorialVentas.GestorHistorial;
+import pequeno_cesar.GestorHistorial;
 
 import java.awt.event.*;
 

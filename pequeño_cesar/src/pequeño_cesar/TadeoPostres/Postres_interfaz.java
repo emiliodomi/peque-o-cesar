@@ -1,29 +1,35 @@
 package pequeño_cesar.TadeoPostres;
 
-import javax.swing.*;
-
-import HistorialVentas.VentanaHistorial;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
+import pequeno_cesar.GestorHistorial;
+import pequeno_cesar.MainMenu;
+import pequeno_cesar.VentanaHistorial; 
 
 public class Postres_interfaz extends JFrame {
     
     private static final long serialVersionUID = 1L;
     RefrigeradorPostres refri = new RefrigeradorPostres();
-    pequeño_cesar.GestorHistorial gestor = new pequeño_cesar.GestorHistorial();
-    
+    GestorHistorial gestor = new GestorHistorial();
+   
     public Postres_interfaz() {
         setTitle("Menu postres");
         setSize(400, 300);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null); 
         
-    
         JMenuBar barraMenu = new JMenuBar();
         JMenu menuOpciones = new JMenu("Opciones");
-        
-     
         JMenu menuOrdenar = new JMenu("Ordenar");
         JMenuItem itemNombre = new JMenuItem("Nombre");
         
@@ -44,56 +50,61 @@ public class Postres_interfaz extends JFrame {
             }
         });
         
-        
         menuOrdenar.add(itemNombre);
         menuOpciones.add(menuOrdenar);
 
-              JMenuItem itemHistorial = new JMenuItem("Ver Historial de Ventas");
+        JMenuItem itemHistorial = new JMenuItem("Ver Historial de Ventas");
         itemHistorial.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	
-            	//por que me marca error?
-            	new VentanaHistorial().setVisible(true);
+               
+                new VentanaHistorial().setVisible(true);
             }
         });
+        
+        
         
         menuOpciones.add(itemHistorial);
         barraMenu.add(menuOpciones);
         setJMenuBar(barraMenu); 
       
         JPanel p = new JPanel();
-        
         List<Postres> lista = refri.getListaPostres();
         
-      
+       
         for (int i = 0; i < lista.size(); i++) {
             Postres pos = lista.get(i);
             JButton b = new JButton(pos.getNombre());
             
             b.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                    
                     if(pos.getNombre().equals("Flan")) {
-                        InterfazElegirFlan vent1 = new InterfazElegirFlan(pos, Postres_interfaz.this);
-                        vent1.setVisible(true);
+                        new InterfazElegirFlan(pos, Postres_interfaz.this).setVisible(true);
                         dispose(); 
                     }
                     if(pos.getNombre().equals("Pastel")) {
-                        InterfazElegirPastel vent2 = new InterfazElegirPastel(pos, Postres_interfaz.this);
-                        vent2.setVisible(true);
+                        new InterfazElegirPastel(pos, Postres_interfaz.this).setVisible(true);
                         dispose();
                     }
                     if(pos.getNombre().equals("Gelatina")) {
-                        InterfazElegirGelatina vent3 = new InterfazElegirGelatina(pos, Postres_interfaz.this);
-                        vent3.setVisible(true);
+                        new InterfazElegirGelatina(pos, Postres_interfaz.this).setVisible(true);
                         dispose();
                     }
-                    
                 }
-         });
+            });
             p.add(b);
         }
         
+        
+        JButton btnRegresar = new JButton("Regresar al Menú");
+        btnRegresar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new MainMenu().setVisible(true); // Abre el menú 
+                dispose(); // Cierra 
+            }
+        });
+        p.add(btnRegresar);
+        // ----------------------------------------------
+
         add(p);
     }
 }

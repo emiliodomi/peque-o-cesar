@@ -1,4 +1,4 @@
-package pequeño_cesar;
+package pequeno_cesar;
 
 import javax.swing.SwingUtilities;
 

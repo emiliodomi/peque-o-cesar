@@ -2,12 +2,14 @@ package pequeño_cesar.TadeoPostres;
 
 import javax.swing.*;
 
-import HistorialVentas.GestorHistorial;
+import pequeno_cesar.GestorHistorial;
 
 import java.awt.event.*;
 
 public class InterfazElegirFlan extends JFrame {
-    JLabel textoStock; 
+    
+	private static final long serialVersionUID = 1L;
+	JLabel textoStock; 
     
     public InterfazElegirFlan(Postres p, JFrame menuAtras) {
         setTitle("Vender Flan");

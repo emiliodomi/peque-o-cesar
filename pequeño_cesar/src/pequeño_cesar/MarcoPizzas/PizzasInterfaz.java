@@ -1,8 +1,10 @@
 package pequeño_cesar.MarcoPizzas;
 
 import javax.swing.*;
+
+import pequeno_cesar.MainMenu;
+
 import java.awt.*;
-import pequeño_cesar.MainMenu;
 
 public class PizzasInterfaz extends JFrame {
 
