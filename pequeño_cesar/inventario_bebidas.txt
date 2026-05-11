@@ -1,0 +1,5 @@
+=== ESTADO DEL INVENTARIO ===
+Producto: Tinto
+Cantidad en Almacen: 59
+Total Vendidas: 1
+----------------------------

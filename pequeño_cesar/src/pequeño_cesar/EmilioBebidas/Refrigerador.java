@@ -1,30 +1,22 @@
 package pequeño_cesar.EmilioBebidas;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.ArrayList; 
 
 public class Refrigerador {
-    private List<Bebidas> listaBebidas;
+    // EL TRUCO: Al ser static, los cambios se mantienen aunque cierres la ventana
+    public static List<Bebidas> listaBebidas = new ArrayList<>();
 
     public Refrigerador() {
-        this.listaBebidas = new ArrayList<>();
-        //refrescos
-        listaBebidas.add(new Bebidas("Fanta", "Refresco", 50, 20.0));
-        
-        //aguas
-        listaBebidas.add(new Bebidas("limonada", "Agua", 20, 15.5));
-        
-        //vino
-        listaBebidas.add(new Bebidas("tinto", "Vino", 60, 60.5));
+        // Solo llenamos la lista si está vacía (la primera vez que abres el programa)
+        if (listaBebidas.isEmpty()) {
+            listaBebidas.add(new Bebidas("Fanta", "Refresco", 50, 20.0));
+            listaBebidas.add(new Bebidas("Limonada", "Agua", 20, 15.5));
+            listaBebidas.add(new Bebidas("Tinto", "Vino", 60, 60.5));
+        }
     }
 
-	public List<Bebidas> getListaBebidas() {
-		return listaBebidas;
-	}
-
-	public void setListaBebidas(List<Bebidas> listaBebidas) {
-		this.listaBebidas = listaBebidas;
-	}
-    
-    
+    public List<Bebidas> getListaBebidas() {
+        return listaBebidas;
+    }
 }

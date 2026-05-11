@@ -38,6 +38,11 @@ public class MainMenu extends JFrame {
             new PizzasInterfaz(); 
             this.dispose();
         });
+        
+        btnPostres.addActionListener(e -> {
+            new Postres_interfaz(); 
+            this.dispose();
+        });
 
         btnPostres.addActionListener(e -> {
          

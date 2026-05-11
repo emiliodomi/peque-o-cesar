@@ -1,7 +1,7 @@
 package pequeño_cesar.TadeoPostres;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -13,7 +13,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import pequeno_cesar.GestorHistorial;
-import pequeno_cesar.MainMenu;
 import pequeno_cesar.VentanaHistorial; 
 
 public class Postres_interfaz extends JFrame {
@@ -24,87 +23,76 @@ public class Postres_interfaz extends JFrame {
    
     public Postres_interfaz() {
         setTitle("Menu postres");
-        setSize(400, 300);
+        setSize(500, 400); // Un poco más grande para que quepa el diseño
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null); 
+        setLocationRelativeTo(null);
+        setLayout(new BorderLayout()); // Usamos BorderLayout para organizar
         
+        // --- BARRA DE MENÚ ---
         JMenuBar barraMenu = new JMenuBar();
         JMenu menuOpciones = new JMenu("Opciones");
         JMenu menuOrdenar = new JMenu("Ordenar");
         JMenuItem itemNombre = new JMenuItem("Nombre");
         
-        itemNombre.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                List<Postres> lista = refri.getListaPostres();
-         
-                for(int i = 0; i < lista.size() - 1; i++){
-                    for(int j = 0; j < lista.size() - 1 - i; j++){
-                        if(lista.get(j).getNombre().compareTo(lista.get(j+1).getNombre()) > 0){
-                            Postres temporal = lista.get(j);
-                            lista.set(j, lista.get(j+1));
-                            lista.set(j+1, temporal);
-                        }
+        itemNombre.addActionListener(e -> {
+            List<Postres> lista = refri.getListaPostres();
+            // Burbuja para ordenar
+            for(int i = 0; i < lista.size() - 1; i++){
+                for(int j = 0; j < lista.size() - 1 - i; j++){
+                    if(lista.get(j).getNombre().compareTo(lista.get(j+1).getNombre()) > 0){
+                        Postres temporal = lista.get(j);
+                        lista.set(j, lista.get(j+1));
+                        lista.set(j+1, temporal);
                     }
                 }
-                JOptionPane.showMessageDialog(null, "Postres ordenados por Nombre. Cierra y vuelve a abrir para ver los cambios.");
             }
+            JOptionPane.showMessageDialog(null, "Postres ordenados por Nombre. Reinicia la ventana para ver cambios.");
         });
         
         menuOrdenar.add(itemNombre);
-        menuOpciones.add(menuOrdenar);
-
+        
         JMenuItem itemHistorial = new JMenuItem("Ver Historial de Ventas");
-        itemHistorial.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-               
-                new VentanaHistorial().setVisible(true);
-            }
+        itemHistorial.addActionListener(e -> {
+            new VentanaHistorial().setVisible(true);
         });
         
-        
-        
+        menuOpciones.add(menuOrdenar);
         menuOpciones.add(itemHistorial);
         barraMenu.add(menuOpciones);
         setJMenuBar(barraMenu); 
-      
-        JPanel p = new JPanel();
+
+        // --- PANEL SUPERIOR PARA EL BOTÓN REGRESAR ---
+        JPanel panelSuperior = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        JButton reg = new JButton("← Regresar");
+        reg.addActionListener(e -> {
+            new JMenu().setVisible(true);
+            this.dispose();
+        });
+        panelSuperior.add(reg);
+        add(panelSuperior, BorderLayout.NORTH);
+
+        // --- PANEL CENTRAL PARA LOS BOTONES DE POSTRES ---
+        JPanel p = new JPanel(new FlowLayout()); // FlowLayout acomoda los botones uno tras otro
         List<Postres> lista = refri.getListaPostres();
         
-       
-        for (int i = 0; i < lista.size(); i++) {
-            Postres pos = lista.get(i);
+        for (Postres pos : lista) {
             JButton b = new JButton(pos.getNombre());
-            
-            b.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    if(pos.getNombre().equals("Flan")) {
-                        new InterfazElegirFlan(pos, Postres_interfaz.this).setVisible(true);
-                        dispose(); 
-                    }
-                    if(pos.getNombre().equals("Pastel")) {
-                        new InterfazElegirPastel(pos, Postres_interfaz.this).setVisible(true);
-                        dispose();
-                    }
-                    if(pos.getNombre().equals("Gelatina")) {
-                        new InterfazElegirGelatina(pos, Postres_interfaz.this).setVisible(true);
-                        dispose();
-                    }
+            b.addActionListener(e -> {
+                if(pos.getNombre().equalsIgnoreCase("Flan")) {
+                    new InterfazElegirFlan(pos, this).setVisible(true);
+                    this.dispose(); 
+                } else if(pos.getNombre().equalsIgnoreCase("Pastel")) {
+                    new InterfazElegirPastel(pos, this).setVisible(true);
+                    this.dispose();
+                } else if(pos.getNombre().equalsIgnoreCase("Gelatina")) {
+                    new InterfazElegirGelatina(pos, this).setVisible(true);
+                    this.dispose();
                 }
             });
             p.add(b);
         }
         
-        
-        JButton btnRegresar = new JButton("Regresar al Menú");
-        btnRegresar.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                new MainMenu().setVisible(true); // Abre el menú 
-                dispose(); // Cierra 
-            }
-        });
-        p.add(btnRegresar);
-        // ----------------------------------------------
-
-        add(p);
+        add(p, BorderLayout.CENTER);
+        this.setVisible(true);
     }
 }
