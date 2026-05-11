@@ -1,8 +1,9 @@
-package pequeño_cesar.EmilioBebidas;
+package pequeno_cesar.EmilioBebidas;
 
 import javax.swing.*;
+
 import javax.swing.border.EmptyBorder;
-import pequeño_cesar.MainMenu;
+import pequeno_cesar.MainMenu;
 import java.awt.*;
 import java.util.List;
 

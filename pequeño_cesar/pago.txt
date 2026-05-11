@@ -1,0 +1,9 @@
+Cantidad a pagar: 287.0
+Cantidad a pagar: 0.0
+Cantidad a pagar: 287.0
+Venta Pizzas - Cantidad a pagar: $89.0
+Venta Pizzas - Cantidad a pagar: $109.0
+Venta Pizzas - Cantidad a pagar: $178.0
+Venta Pizzas - Cantidad a pagar: $89.0
+Venta Pizzas - Cantidad a pagar: $89.0
+Venta Pizzas - Cantidad a pagar: $89.0

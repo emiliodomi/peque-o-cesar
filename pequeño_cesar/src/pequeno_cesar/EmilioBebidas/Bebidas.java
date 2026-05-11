@@ -1,16 +1,17 @@
-package pequeño_cesar.TadeoPostres;
+package pequeno_cesar.EmilioBebidas;
 
-public class Postres {
+public class Bebidas {
 	protected String nombre;
 	protected String tipo;
-	protected int cantidad;
+	protected int cantidad_almacen;
 	protected int vendidas;
 	protected double precio;
 	
-	public Postres(String nombre, int cantidad, double precio) {
+	public Bebidas(String nombre, String tipo, int cantidad_almacen, double precio) {
 		super();
 		this.nombre = nombre;
-		this.cantidad = cantidad;
+		this.tipo = tipo;
+		this.cantidad_almacen = cantidad_almacen;
 		this.vendidas = 0;
 		this.precio = precio;
 	}
@@ -20,7 +21,7 @@ public class Postres {
 	}
 	
 	protected void reabastecer(int sumar_cantidad) {
-		cantidad += sumar_cantidad;
+		cantidad_almacen += sumar_cantidad;
 	}
 
 	public String getNombre() {
@@ -40,11 +41,11 @@ public class Postres {
 	}
 
 	public int getCantidad_almacen() {
-		return cantidad;
+		return cantidad_almacen;
 	}
 
-	public void setCantidad_almacen(int cantidad) {
-		this.cantidad = cantidad;
+	public void setCantidad_almacen(int cantidad_almacen) {
+		this.cantidad_almacen = cantidad_almacen;
 	}
 
 	public int getVendidas() {
@@ -63,7 +64,6 @@ public class Postres {
 		this.precio = precio;
 	}
 	
-
 	
 	
 }

@@ -1,6 +1,7 @@
-package pequeño_cesar.TadeoPostres;
+package pequeno_cesar.TadeoPostres;
 
 import java.awt.BorderLayout;
+
 import java.awt.FlowLayout;
 import java.util.List;
 
@@ -13,7 +14,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import pequeno_cesar.GestorHistorial;
-import pequeno_cesar.VentanaHistorial; 
+import pequeno_cesar.VentanaHistorial;
+import pequeno_cesar.MainMenu;
 
 public class Postres_interfaz extends JFrame {
     
@@ -65,7 +67,7 @@ public class Postres_interfaz extends JFrame {
         JPanel panelSuperior = new JPanel(new FlowLayout(FlowLayout.LEFT));
         JButton reg = new JButton("← Regresar");
         reg.addActionListener(e -> {
-            new JMenu().setVisible(true);
+            new MainMenu();
             this.dispose();
         });
         panelSuperior.add(reg);

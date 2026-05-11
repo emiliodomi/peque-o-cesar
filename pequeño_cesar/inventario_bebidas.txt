@@ -1,5 +1,5 @@
 === ESTADO DEL INVENTARIO ===
-Producto: Tinto
-Cantidad en Almacen: 59
+Producto: Fanta
+Cantidad en Almacen: 49
 Total Vendidas: 1
 ----------------------------
