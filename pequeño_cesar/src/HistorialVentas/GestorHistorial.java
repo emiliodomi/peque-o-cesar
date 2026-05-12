@@ -1,4 +1,4 @@
-package HistorialVentas; // <--- Importante: que sea este paquete
+package HistorialVentas; 
 
 import java.io.*;
 import java.util.ArrayList;

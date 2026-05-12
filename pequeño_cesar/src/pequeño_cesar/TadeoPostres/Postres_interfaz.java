@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.util.List;
 
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -14,7 +15,7 @@ import javax.swing.JPanel;
 
 import pequeno_cesar.GestorHistorial;
 import pequeno_cesar.VentanaHistorial; 
-
+import pequeno_cesar.MainMenu;
 public class Postres_interfaz extends JFrame {
     
     private static final long serialVersionUID = 1L;
@@ -24,13 +25,13 @@ public class Postres_interfaz extends JFrame {
     public Postres_interfaz() {
         setTitle("Menu postres");
         setSize(500, 400); // Un poco más grande para que quepa el diseño
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         setLayout(new BorderLayout()); // Usamos BorderLayout para organizar
         
         // --- BARRA DE MENÚ ---
         JMenuBar barraMenu = new JMenuBar();
-        JMenu menuOpciones = new JMenu("Opciones");
+        JMenu menuOpciones = new JMenu("Opiones");
         JMenu menuOrdenar = new JMenu("Ordenar");
         JMenuItem itemNombre = new JMenuItem("Nombre");
         
@@ -46,7 +47,7 @@ public class Postres_interfaz extends JFrame {
                     }
                 }
             }
-            JOptionPane.showMessageDialog(null, "Postres ordenados por Nombre. Reinicia la ventana para ver cambios.");
+            JOptionPane.showMessageDialog(null, "Postres ordenados por Nombre.");
         });
         
         menuOrdenar.add(itemNombre);
@@ -61,18 +62,18 @@ public class Postres_interfaz extends JFrame {
         barraMenu.add(menuOpciones);
         setJMenuBar(barraMenu); 
 
-        // --- PANEL SUPERIOR PARA EL BOTÓN REGRESAR ---
+       
         JPanel panelSuperior = new JPanel(new FlowLayout(FlowLayout.LEFT));
         JButton reg = new JButton("← Regresar");
         reg.addActionListener(e -> {
-            new JMenu().setVisible(true);
+            new MainMenu().setVisible(true);
             this.dispose();
         });
         panelSuperior.add(reg);
         add(panelSuperior, BorderLayout.NORTH);
 
-        // --- PANEL CENTRAL PARA LOS BOTONES DE POSTRES ---
-        JPanel p = new JPanel(new FlowLayout()); // FlowLayout acomoda los botones uno tras otro
+       
+        JPanel p = new JPanel(new FlowLayout()); 
         List<Postres> lista = refri.getListaPostres();
         
         for (Postres pos : lista) {
