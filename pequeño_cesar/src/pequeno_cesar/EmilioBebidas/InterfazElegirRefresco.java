@@ -16,26 +16,20 @@ public class InterfazElegirRefresco extends JFrame {
         
         setTitle("Venta de Refresco - " + bebidaLocal.getNombre());
         setSize(400, 300); 
-        // Cambiado a DISPOSE para no cerrar toda la aplicación
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); 
         setLocationRelativeTo(null);
         setLayout(new FlowLayout(FlowLayout.CENTER, 20, 20));
 
-        // Mostramos el precio en el botón para que el usuario lo vea
         JButton btnComprar = new JButton("Comprar " + bebidaLocal.getNombre() + " ($" + bebidaLocal.getPrecio() + ")");
         btnComprar.setFont(new Font("Arial", Font.BOLD, 14));
 
         btnComprar.addActionListener(e -> {
             if (bebidaLocal.getCantidad_almacen() > 0) {
-                // 1. Modificar los datos en memoria
                 bebidaLocal.setCantidad_almacen(bebidaLocal.getCantidad_almacen() - 1);
                 bebidaLocal.vender(); 
                 
-                // 2. Guardar el cambio en el archivo de texto
                 guardarEnArchivo();
                 
-                // --- INTEGRACIÓN CON MAIN MENU ---
-                // Enviamos el nombre y el precio al ticket central
                 MainMenu.agregarAlPedido(bebidaLocal.getNombre(), bebidaLocal.getPrecio());
                 
                 JOptionPane.showMessageDialog(this, "Refresco agregado al pedido.\nStock restante: " + bebidaLocal.getCantidad_almacen());
@@ -46,7 +40,6 @@ public class InterfazElegirRefresco extends JFrame {
 
         JButton btnVolver = new JButton("Volver");
         btnVolver.addActionListener(e -> {
-            // Regresa al menú principal, el cual se reconstruirá con el historial guardado
             new MainMenu().setVisible(true);
             this.dispose();
         });
@@ -55,7 +48,6 @@ public class InterfazElegirRefresco extends JFrame {
         add(btnVolver);
     }
 
-    // MÉTODO PARA ESCRIBIR EN EL ARCHIVO .TXT
     private void guardarEnArchivo() {
         try (FileWriter fw = new FileWriter("inventario_bebidas.txt", false); 
              PrintWriter pw = new PrintWriter(fw)) {
