@@ -1,4 +1,4 @@
-package pequeño_cesar.MarcoPizzas;
+package pequeno_cesar.MarcoPizzas;
 
 public class Pizza {
     private String especialidad;

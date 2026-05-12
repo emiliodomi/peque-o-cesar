@@ -1,44 +1,45 @@
-package pequeño_cesar.EmilioBebidas;
+package pequeno_cesar.EmilioBebidas;
 
 import java.awt.*;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.swing.*;
-import pequeño_cesar.MainMenu;
+import pequeno_cesar.MainMenu;
 
-public class InterfazElegirRefresco extends JFrame {
+public class InterfazElegirAgua extends JFrame {
     
     private Bebidas bebidaLocal;
 
-    public InterfazElegirRefresco(Bebidas bebidaRecibida) {
+    public InterfazElegirAgua(Bebidas bebidaRecibida) {
         this.bebidaLocal = bebidaRecibida;
         
-        setTitle("Venta de Refresco");
+        setTitle("Venta de Agua - " + bebidaLocal.getNombre());
         setSize(400, 300); 
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         setLayout(new FlowLayout(FlowLayout.CENTER, 20, 20));
 
-        JButton btnComprar = new JButton("Comprar " + bebidaLocal.getNombre());
+        JButton btnComprar = new JButton("Comprar " + bebidaLocal.getNombre() + " ($" + bebidaLocal.getPrecio() + ")");
         btnComprar.setFont(new Font("Arial", Font.BOLD, 14));
 
         btnComprar.addActionListener(e -> {
             if (bebidaLocal.getCantidad_almacen() > 0) {
-                // 1. Modificar los datos en memoria
+
                 bebidaLocal.setCantidad_almacen(bebidaLocal.getCantidad_almacen() - 1);
                 bebidaLocal.vender(); 
                 
-                // 2. Guardar el cambio en el archivo de texto
                 guardarEnArchivo();
                 
-                JOptionPane.showMessageDialog(this, "Venta realizada.\nQuedan: " + bebidaLocal.getCantidad_almacen());
+                MainMenu.agregarAlPedido(bebidaLocal.getNombre(), bebidaLocal.getPrecio());
+                
+                JOptionPane.showMessageDialog(this, "Venta realizada con éxito.\nAgregado al ticket del Menú Principal.");
             } else {
                 JOptionPane.showMessageDialog(this, "No hay stock suficiente.");
             }
         });
 
-        JButton btnVolver = new JButton("Volver");
+        JButton btnVolver = new JButton("Volver al Menú");
         btnVolver.addActionListener(e -> {
             new MainMenu().setVisible(true);
             this.dispose();
@@ -48,10 +49,8 @@ public class InterfazElegirRefresco extends JFrame {
         add(btnVolver);
     }
 
-    // MÉTODO PARA ESCRIBIR EN EL ARCHIVO .TXT
     private void guardarEnArchivo() {
-        // Usamos try-with-resources para que el archivo se cierre solo al terminar
-        try (FileWriter fw = new FileWriter("inventario_bebidas.txt", false); // 'false' para sobreescribir con el dato más nuevo
+        try (FileWriter fw = new FileWriter("inventario_bebidas.txt", false); 
              PrintWriter pw = new PrintWriter(fw)) {
             
             pw.println("=== ESTADO DEL INVENTARIO ===");

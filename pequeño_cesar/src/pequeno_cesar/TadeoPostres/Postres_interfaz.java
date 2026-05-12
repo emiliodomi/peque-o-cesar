@@ -1,6 +1,7 @@
-package pequeño_cesar.TadeoPostres;
+package pequeno_cesar.TadeoPostres;
 
 import java.awt.BorderLayout;
+
 import java.awt.FlowLayout;
 import java.util.List;
 
@@ -14,8 +15,14 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import pequeno_cesar.GestorHistorial;
+<<<<<<< HEAD:pequeño_cesar/src/pequeño_cesar/TadeoPostres/Postres_interfaz.java
 import pequeno_cesar.VentanaHistorial; 
 import pequeno_cesar.MainMenu;
+=======
+import pequeno_cesar.VentanaHistorial;
+import pequeno_cesar.MainMenu;
+
+>>>>>>> 330a5c8eb6297113dc9495e68ab9f0788647b837:pequeño_cesar/src/pequeno_cesar/TadeoPostres/Postres_interfaz.java
 public class Postres_interfaz extends JFrame {
     
     private static final long serialVersionUID = 1L;
@@ -66,7 +73,11 @@ public class Postres_interfaz extends JFrame {
         JPanel panelSuperior = new JPanel(new FlowLayout(FlowLayout.LEFT));
         JButton reg = new JButton("← Regresar");
         reg.addActionListener(e -> {
+<<<<<<< HEAD:pequeño_cesar/src/pequeño_cesar/TadeoPostres/Postres_interfaz.java
             new MainMenu().setVisible(true);
+=======
+            new MainMenu();
+>>>>>>> 330a5c8eb6297113dc9495e68ab9f0788647b837:pequeño_cesar/src/pequeno_cesar/TadeoPostres/Postres_interfaz.java
             this.dispose();
         });
         panelSuperior.add(reg);

@@ -1,20 +1,20 @@
-package pequeño_cesar.TadeoPostres;
+package pequeno_cesar.TadeoPostres;
 
 import javax.swing.*;
-
 import pequeno_cesar.GestorHistorial;
-
+import pequeno_cesar.MainMenu;
 import java.awt.event.*;
 
 public class InterfazElegirGelatina extends JFrame {
   
-	private static final long serialVersionUID = 1L;
-	JLabel textoStock; 
+    private static final long serialVersionUID = 1L;
+    JLabel textoStock; 
     
     public InterfazElegirGelatina(Postres p, JFrame menuAtras) {
         setTitle("Vender Gelatina");
         setSize(300, 250);
         setLayout(null); 
+        setLocationRelativeTo(null); // Centra la ventana
 
         textoStock = new JLabel("Stock de gelatina: " + p.getCantidad_almacen());
         textoStock.setBounds(20, 20, 200, 30); 
@@ -32,6 +32,7 @@ public class InterfazElegirGelatina extends JFrame {
         btnVolver.setBounds(20, 150, 120, 30);
         add(btnVolver);
 
+        // --- LÓGICA PARA VENDER ---
         btnVender.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if(p.getCantidad_almacen() > 0) {
@@ -39,18 +40,22 @@ public class InterfazElegirGelatina extends JFrame {
                     p.vender();
                     textoStock.setText("Stock de gelatina: " + p.getCantidad_almacen());
                     
-               //aqui esta el gestor de historia para mi 
+                    // 1. Guardado en tu gestor de historial personal
                     GestorHistorial gestor = new GestorHistorial();
                     gestor.agregarVenta("Se vendió 1x " + p.getNombre() + " por $" + p.getPrecio());
                     
+                    // 2. --- CONEXIÓN CON EL TICKET DEL MAIN MENU ---
+                    // Registra la gelatina en el área de texto central y suma al total
+                    MainMenu.agregarAlPedido(p.getNombre(), p.getPrecio());
                     
-                    JOptionPane.showMessageDialog(null, "vendiste una gelatina!");
+                    JOptionPane.showMessageDialog(null, "¡Gelatina vendida y agregada al ticket!");
                 } else {
-                    JOptionPane.showMessageDialog(null, "ya no hay gelatina");
+                    JOptionPane.showMessageDialog(null, "Ya no hay gelatina disponible");
                 }
             }
         });
 
+        // --- LÓGICA PARA REABASTECER ---
         btnHacer.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 p.setCantidad_almacen(p.getCantidad_almacen() + 10);
@@ -58,11 +63,13 @@ public class InterfazElegirGelatina extends JFrame {
             }
         });
 
-        btnVolver.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                menuAtras.setVisible(true);
-                dispose();
-            }
+        // --- LÓGICA PARA REGRESAR ---
+        btnVolver.addActionListener(e -> {
+            // Abrimos el menú principal (que cargará el historial estático automáticamente)
+            new MainMenu().setVisible(true);
+            this.dispose();
         });
+        
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 }
